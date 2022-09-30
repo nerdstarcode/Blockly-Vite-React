@@ -1,0 +1,14 @@
+.fill-height{
+    height: 80vh;
+    width: 60vw;
+}
+#code{
+    height: 80vh;
+    width: 30vw;
+    resize: vertical;
+}
+.workspace{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
