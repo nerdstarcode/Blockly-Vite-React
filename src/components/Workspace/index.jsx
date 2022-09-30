@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
+
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
+
 import Category1Controller from '../../blocks/Category1/Controller'
 import Category2Controller from '../../blocks/Category2/Controller'
+
 export default function Workspace() {
   const [xml, setXml] = useState('');
   const [javascriptCode, setJavascriptCode] = useState('');
+  
   useEffect(() => {
     Category1Controller.import()
     Category2Controller.import()
