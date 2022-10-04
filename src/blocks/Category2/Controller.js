@@ -1,5 +1,5 @@
 import BooleanComponent from './BooleanComponent'
-const Category2Controller = {
+const Category2 = {
     Blocks: [
         BooleanComponent,
     ],
@@ -21,4 +21,4 @@ const Category2Controller = {
         this.Blocks.forEach(item => item.Java)
     }
 }
-export default Category2Controller
+export default Category2

@@ -1,5 +1,5 @@
 import Component from './Component'
-const Category1Controller = {
+const Category1 = {
     Blocks: [
         Component,
     ],
@@ -21,4 +21,4 @@ const Category1Controller = {
         this.Blocks.forEach(item => item.Java)
     }
 }
-export default Category1Controller
+export default Category1

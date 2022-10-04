@@ -1,38 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import './index.css';
 
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 
-import Category1Controller from '../../blocks/Category1/Controller'
-import Category2Controller from '../../blocks/Category2/Controller'
+import Controller from '../../blocks/Controller'
 
 export default function Workspace() {
   const [xml, setXml] = useState('');
   const [javascriptCode, setJavascriptCode] = useState('');
-  
-  useEffect(() => {
-    Category1Controller.import()
-    Category2Controller.import()
-  },[]);
+  const [category, setCategory] = useState([]);
   const initialXml =`
     <xml xmlns="http://www.w3.org/1999/xhtml">
-      <block type="Component" x="70" y="30">
-      </block>
+    <block type="start" x="70" y="30">
+    </block>
     </xml>
   `;
 
+  useLayoutEffect(() => {
+    let Category = []
+    Controller.forEach(CategoryItem => {
+    CategoryItem.import()
+    Category.push(CategoryItem.category())
+    })
+    setCategory(Category)
+  },[]);
+
   const toolboxCategories = {
     "kind": "categoryToolbox",
-    "contents": [
-      Category1Controller.category(),
-      Category2Controller.category()
-    ]
+    "contents": category
   };
 
+  let alertVar = 0
   function workspaceDidChange(workspace) {
-    const code = Blockly.JavaScript.workspaceToCode(workspace);
-    setJavascriptCode(code);
+    try{
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      setJavascriptCode(code);
+    }catch(e){
+      if(alertVar === 0) {
+          alertVar += 1
+          alert("Esses blocos não encaixam!")
+          console.log("Esses blocos não encaixam!")
+      }
+    }
   }
 
   return (
