@@ -36,12 +36,20 @@ Aqui vou lhe explicar onde você conseguirá encontrar o que e de onde partir pa
 É o centro de importação dos componentes, como costuma ser, nele  é chamado o componente [Workspace](https://github.com/nerdstarcode/Blockly-Vite-React/tree/master/src/components/Workspace)
 #### O componente [Workspace](https://github.com/nerdstarcode/Blockly-Vite-React/tree/master/src/components/Workspace)
 É onde se importa e onde se faz a exibição das funcionalidades do Blockly.
-As importações
+
+#### O [Controller](https://github.com/nerdstarcode/Blockly-Vite-React/blob/master/src/blocks/Controller.js)
+É o responsável por fazer as importações de cada bloco
 ```
-  import Category1Controller from '../../blocks/Category1/Controller'
-  import Category2Controller from '../../blocks/Category2/Controller'
+  useLayoutEffect(() => {
+    let Category = []
+    Controller.forEach(CategoryItem => {
+    CategoryItem.import()
+    Category.push(CategoryItem.category())
+    })
+    setCategory(Category)
+  },[]);
 ```
-Essas duas importações são a base para montarmos a nossa [Toolbox](https://developers.google.com/blockly/guides/configure/web/toolbox)
+Esse bloco de código é o respon´savel por importar todos os blocos e configurar as categorias para serem chamadas na parte seguinte
 
 A estrutura base dessas categorias pode ser encontrada na pasta [blocks/CategoryDefault/Controller.js](https://github.com/nerdstarcode/Blockly-Vite-React/blob/master/src/blocks/CategoryDefault/Controller.js)
 
@@ -57,9 +65,9 @@ No código disponibilizado na branch [master](https://github.com/nerdstarcode/Bl
 
 | Propriedades      | Descrição                                                                                                  |
 | ----------------- | ---------------------------------------------------------------------------------------------------------- |
-| .Content           | É um objeto onde se define **"kind"**, que no nosso caso por padrão é **"block"** e o **type**, que é o nome do bloco|
-| .Block             | É o código de definição do bloco. [saiba mais clicando aqui](https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools)|
-| .Java              | É o código que ira gerar a "transpilação", é o código conseguido na parte "Generator Stub(s)" da developer tools. [saiba mais clicando aqui](https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools)|
+| Content           | É um objeto onde se define **"kind"**, que no nosso caso por padrão é **"block"** e o **"type"**, que é o nome do bloco|
+| Block             | É o código de definição do bloco. [saiba mais clicando aqui](https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools)|
+| Java              | É o código que ira gerar a "transpilação", é o código conseguido na parte "Generator Stub(s)" da developer tools. [saiba mais clicando aqui](https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools)|
 
 Exemplos que estão no código podem ser encontrados nos componentes [Component](https://github.com/nerdstarcode/Blockly-Vite-React/blob/master/src/blocks/Category1/Component.js) e [BooleanComponent](https://github.com/nerdstarcode/Blockly-Vite-React/blob/master/src/blocks/Category2/BooleanComponent.js)
 
