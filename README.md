@@ -39,7 +39,7 @@ Aqui vou lhe explicar onde você conseguirá encontrar o que e de onde partir pa
 
 #### O [Controller](https://github.com/nerdstarcode/Blockly-Vite-React/blob/master/src/blocks/Controller.js)
 É o responsável por fazer as importações de cada bloco
-```
+```jsx
   useLayoutEffect(() => {
     let Category = []
     Controller.forEach(CategoryItem => {
